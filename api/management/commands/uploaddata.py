@@ -6,8 +6,8 @@ from api.management.fixtures import load_fixtures
 class Command(BaseCommand):
 
     models_list = [
-        'User',
         'Achievement',
+        'User',
         'Advertisement',
         'Note',
         'Event',

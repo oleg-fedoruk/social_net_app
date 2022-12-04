@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "5f4dcb2c-61a2-4e3e-8fb6-43352e3445cd",
+		"name": "Social Net App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get news feed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/v1/user/2/events",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"2",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get just achivements",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/v1/user/2/events/?search=got_achievement",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"2",
+						"events",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "got_achievement"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get only notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/v1/user/2/events/?search=note_created",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"2",
+						"events",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "note_created"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get event by header",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/v1/user/2/events/?search=Вторая",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"2",
+						"events",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Вторая"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
