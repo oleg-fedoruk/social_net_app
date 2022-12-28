@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#python manage.py migrate
+#python manage.py runserver
 docker-compose down -v
 docker-compose build
 docker-compose up --remove-orphans -d

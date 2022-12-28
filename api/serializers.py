@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Serializer
 
 from api.models import Event, Advertisement
 
@@ -10,7 +10,6 @@ class EventSer(ModelSerializer):
         model = Event
         fields = (
             'header',
-            'type',
             'created_at',
         )
 
@@ -20,3 +19,13 @@ class AdvertisementSer(ModelSerializer):
     class Meta:
         model = Advertisement
         fields = '__all__'
+
+
+class FeedSerializer(Serializer):
+
+    def to_representation(self, instance):
+        if isinstance(instance, Event):
+            return EventSer().to_representation(instance)
+        if isinstance(instance, Advertisement):
+            return AdvertisementSer().to_representation(instance)
+        raise NotImplementedError

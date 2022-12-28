@@ -7,7 +7,7 @@ from api.models import Event, Note, Achievement, Advertisement, User
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     """Заметки"""
-    list_display = ("type",)
+    list_display = ("content_type",)
 
 
 @admin.register(Note)

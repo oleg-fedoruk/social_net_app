@@ -1,5 +1,6 @@
-from api.models import Event
-from social_net.consts import GOT_ACHIEVEMENT, NOTE_CREATED
+from django.contrib.contenttypes.models import ContentType
+
+from api.models import Event, Achievement
 
 
 def achievements_changed(sender, **kwargs):
@@ -10,8 +11,8 @@ def achievements_changed(sender, **kwargs):
         for achievement_pk in achievement_pk_set:
             Event.objects.create(
                 user=user,
-                achievement_id=achievement_pk,
-                type=GOT_ACHIEVEMENT
+                object_id=achievement_pk,
+                content_type=ContentType.objects.get_for_model(Achievement)
             )
 
 
@@ -21,6 +22,5 @@ def note_created(sender, **kwargs):
     if created:
         Event.objects.create(
             user_id=note.creator_id,
-            note=note,
-            type=NOTE_CREATED
+            content_object=note,
         )

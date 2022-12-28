@@ -25,7 +25,7 @@ def load_fixtures(models_list: list):
 def create_fixtures(app_name: str, models_list: list):
     """ Создаёт/обновляет фикстуры из заполненной БД"""
     for model_name in models_list:
-        call_command('dumpdata', f'{app_name}.{model_name}', '-o', f'{model_name}.json')
+        call_command('dumpdata', '--natural-foreign', f'{app_name}.{model_name}', '-o', f'{model_name}.json')
 
 
 if __name__ == '__main__':
