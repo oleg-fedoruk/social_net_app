@@ -39,15 +39,17 @@ class Event(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     objects = EventsManager()
 
-    @property
-    def header(self):
-        return self.__str__()
+    header = models.TextField(verbose_name='Заголовок', null=True, blank=True)
+
+    def save(self):
+        if self.content_type.model == 'note':
+            self.header = f'Пользователь {self.user.username} создал заметку {self.content_object.header}'
+        elif self.content_type.model == 'achievement':
+            self.header = f'Пользователь {self.user.username} получил достижение {self.content_object.name}'
+        super().save()
 
     def __str__(self):
-        if self.content_type.model == 'note':
-            return f'Пользователь {self.user.username} создал заметку {self.content_object.header}'
-        elif self.content_type.model == 'achievement':
-            return f'Пользователь {self.user.username} получил достижение {self.content_object.name}'
+        return self.header
 
     class Meta:
         ordering = ['-created_at']

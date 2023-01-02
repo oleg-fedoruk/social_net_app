@@ -1,14 +1,15 @@
-from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
 
+from api.filters import EventFilter
 from api.models import Event
 from api.serializers import FeedSerializer
 
 
 class EventsViewSet(viewsets.ReadOnlyModelViewSet):
     """Вывод всех событий пользователя"""
-    # filter_backends = [filters.SearchFilter]
-    # search_fields = ['user__username', 'note__header', 'achievement__name', 'type']
-
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = EventFilter
     queryset = Event.objects.all()
     lookup_field = 'user_id'
     serializer_class = FeedSerializer
