@@ -41,7 +41,7 @@ class Event(models.Model):
 
     header = models.TextField(verbose_name='Заголовок', null=True, blank=True)
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if self.content_type.model == 'note':
             self.header = f'Пользователь {self.user.username} создал заметку {self.content_object.header}'
         elif self.content_type.model == 'achievement':
